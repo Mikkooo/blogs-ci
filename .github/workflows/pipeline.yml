@@ -27,7 +27,7 @@ jobs:
           npm run lint
       - name: test
         run: |
-          npm test TESTURL=${{TEST_URL}}
+          npm test TESTURL=${{secrets.TEST_URL}}
       
   frontend_pipeline:
     runs-on: ubuntu-20.04
