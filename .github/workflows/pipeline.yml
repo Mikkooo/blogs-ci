@@ -25,7 +25,7 @@ jobs:
           echo URL=${{secrets.URL}} >> .env
           echo TESTURL=${{secrets.TEST_URL}} >> .env
           echo PORT=3001 >> .env
-          echo SECRET=secrests.secret >> .env
+          echo SECRET=${secrets.secret} >> .env
       - name: "npm install"
         run: |
           npm install
