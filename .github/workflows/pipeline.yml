@@ -19,6 +19,9 @@ jobs:
       - uses: actions/setup-node@v1
         with: 
           node-version: '12.x'
+      - name: "npm install"
+        run: |
+          npm install
       - name: "setup env" 
         run: |
           touch .env
@@ -26,12 +29,12 @@ jobs:
           echo TESTURL=${{secrets.TEST_URL}} >> .env
           echo PORT=3001 >> .env
           echo SECRET=${{secrets.SECRET}} >> .env
-      - name: "npm install"
-        run: |
-          npm install
       - name: lint
         run: |
           npm run lint
+      - name: print
+        run: |
+          cat .env
       - name: test
         run: |
           npm test
