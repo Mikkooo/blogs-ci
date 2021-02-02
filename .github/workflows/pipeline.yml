@@ -34,7 +34,7 @@ jobs:
           npm run lint
       - name: test
         run: |
-          echo ${{secrets.TEST_URL}} 
+          npm test
       
   frontend_pipeline:
     runs-on: ubuntu-20.04
