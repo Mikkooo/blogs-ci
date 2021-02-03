@@ -60,7 +60,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with: 
           name: frontend-build
-          path: build
+          path: frontend/build
           if-no-files-found: error
       - name: test
         run: |
