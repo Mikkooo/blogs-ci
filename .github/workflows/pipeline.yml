@@ -54,6 +54,11 @@ jobs:
       - name: build
         run: |
           npm run build
+      - name: save frontend build
+        uses: actions/upload-artifact@v2
+        with: 
+          name: frontend-build
+          path: build
       - name: test
         run: |
           npm test
@@ -64,6 +69,9 @@ jobs:
       - frontend_pipeline
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: frontend-build
       - name: deploy
         if: github.event_name == 'push'
         uses: akhileshns/heroku-deploy@v3.8.9
