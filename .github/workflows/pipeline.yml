@@ -55,12 +55,13 @@ jobs:
         run: |
           npm run build
       - name: ls
-        run: "ls build/ -A"
+        run: "ls build -A"
       - name: save frontend build
         uses: actions/upload-artifact@v2
         with: 
           name: frontend-build
-          path: build/*
+          path: build
+          if-no-files-found: error
       - name: test
         run: |
           npm test
