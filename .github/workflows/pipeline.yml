@@ -32,9 +32,6 @@ jobs:
       - name: lint
         run: |
           npm run lint
-      - name: print
-        run: |
-          cat .env
       - name: test
         run: |
           npm test
@@ -61,3 +58,12 @@ jobs:
       - name: test
         run: |
           npm test
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: 
+      - backend_pipeline
+      - frontend_pipeline
+    steps:
+      - name: print
+        run: |
+          echo "Hello"
