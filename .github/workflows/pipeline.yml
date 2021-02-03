@@ -63,6 +63,7 @@ jobs:
       - backend_pipeline
       - frontend_pipeline
     steps:
+      - uses: actions/checkout@v2
       - name: deploy
         if: github.event_name == 'push'
         uses: akhileshns/heroku-deploy@v3.8.9
