@@ -65,20 +65,33 @@ jobs:
       - name: test
         run: |
           npm test
-  deploy:
+  e2e-test:
     runs-on: ubuntu-20.04
-    needs: 
-      - backend_pipeline
-      - frontend_pipeline
+    needs: [backend_pipeline, frontend_pipeline]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
         with:
           name: frontend-build
           path: build/
-      - name: ls
+      - name: "setup env" 
         run: |
-          ls
+          touch .env
+          echo "TESTURL=${{secrets.TEST_URL}}" >> .env
+          echo "PORT=3001" >> .env
+          echo "SECRET=${{secrets.SECRET}}" >> .env
+      - name: e2e test
+        uses: cypress-io/github-action@v2
+        with:
+          command: cd frontend && npm run cypress
+          start: npm start:test
+          wait-on: http://localhost:3001
+
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: e2e-test
+    steps:
+      - uses: actions/checkout@v2
       - name: deploy
         if: github.event_name == 'push'
         uses: akhileshns/heroku-deploy@v3.8.9
