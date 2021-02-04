@@ -1,1 +1,1 @@
-web: npm start
+web: ls . -R && npm start
