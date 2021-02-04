@@ -1,7 +1,7 @@
 describe('Blog app', () => {
   beforeEach(() => {
     cy.request('POST', 'http://localhost:3001/api/test/reset');
-    cy.visit('http://localhost:3000');
+    cy.visit('http://localhost:3001');
   });
 
   it('Login form is shown', () => {
