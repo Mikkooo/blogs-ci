@@ -76,8 +76,11 @@ jobs:
         with:
           name: frontend-build
           path: build/
+      - name: ls
+        run: |
+          find . -iname '*index.html'
       - name: deploy
-        if: github.event_name == 'push'
+        if: github.event_name == 'pash'
         uses: akhileshns/heroku-deploy@v3.8.9
         with: 
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
