@@ -70,6 +70,16 @@ jobs:
     needs: [backend_pipeline, frontend_pipeline]
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with: 
+          node-version: '12.x'
+      - name: "npm install backend"
+        run: |
+          npm install
+      - name: "npm install frontend"
+        run: |
+          cd frontend
+          npm install
       - uses: actions/download-artifact@v2
         with:
           name: frontend-build
