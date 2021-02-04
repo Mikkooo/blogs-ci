@@ -78,9 +78,9 @@ jobs:
           path: build/
       - name: ls
         run: |
-          find . -iname '*index.html'
+          ls
       - name: deploy
-        if: github.event_name == 'pash'
+        if: github.event_name == 'push'
         uses: akhileshns/heroku-deploy@v3.8.9
         with: 
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
