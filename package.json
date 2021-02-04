@@ -9,7 +9,8 @@
     "dev": "NODE_ENV=development nodemon .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "start:test": "NODE_ENV=test node index.js"
+    "start:test": "NODE_ENV=test node index.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build && mv build .. -r && cd .."
   },
   "author": "",
   "license": "UNLICENSED",
