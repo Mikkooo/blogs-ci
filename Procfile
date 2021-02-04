@@ -1,1 +1,1 @@
-web: ls . -R && npm start
+web: find . -iname '*index.html' && npm start
